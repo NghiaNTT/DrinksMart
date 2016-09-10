@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160910072858) do
+ActiveRecord::Schema.define(version: 20160910084149) do
 
   create_table "cart_details", force: :cascade do |t|
     t.integer  "cart_id"
@@ -50,13 +50,13 @@ ActiveRecord::Schema.define(version: 20160910072858) do
     t.index ["category_id"], name: "index_drinks_on_category_id"
   end
 
-  create_table "favorites", force: :cascade do |t|
+  create_table "favorite_lists", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "drink_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["drink_id"], name: "index_favorites_on_drink_id"
-    t.index ["user_id"], name: "index_favorites_on_user_id"
+    t.index ["drink_id"], name: "index_favorite_lists_on_drink_id"
+    t.index ["user_id"], name: "index_favorite_lists_on_user_id"
   end
 
   create_table "requests", force: :cascade do |t|
