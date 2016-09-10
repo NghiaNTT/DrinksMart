@@ -1,0 +1,10 @@
+<% provide :title, "Categories" %>
+<h1><%= "All categories" %></h1>
+<ul class="categories">
+  <% @categories.each do |category| %>
+    <li>
+      <%= link_to category.name, admin_categories_path %>
+    </li>
+  <% end %>
+  <%= paginate @categories %>
+</ul>
