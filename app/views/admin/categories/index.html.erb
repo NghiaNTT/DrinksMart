@@ -1,10 +1,36 @@
 <% provide :title, "Categories" %>
 <h1><%= "All categories" %></h1>
-<ul class="categories">
-  <% @categories.each do |category| %>
-    <li>
-      <%= link_to category.name, admin_categories_path %>
-    </li>
+<table class="table table-striped">
+  <thead>
+    <th class="number"><%= "Number" %></th>
+    <th class="title"><%= "Title" %></th>
+    <th class="number drinks"><%= "Number of drinks"%></th>
+    <th class="action"><%= "Action" %></th>
+  </thead>
+  <% @categories.each_with_index do |category, index| %>
+  <tbody>
+    <tr>
+      <td class="category-id"><%= index+1 %></td>
+      <td><%= link_to category.name, admin_categories_path %></td>
+      <td><%= category.drinks.count %></td>
+      <td>
+        <%= link_to new_admin_book_path(id: category.id),
+          data: {toggle: "tooltip", placement: "top"},
+          title: "Add category" do %>
+          <span class= "glyphicon glyphicon-plus" ></span>
+        <% end %>
+        <%= link_to edit_admin_category_path(category),
+          data: {toggle: "tooltip", placement: "top"},
+          title: "Edit Category" do %>
+          <span class= "glyphicon glyphicon-pencil" ></span>
+        <% end %>
+      </td>
+    </tr>
   <% end %>
-  <%= paginate @categories %>
-</ul>
+  </tbody>
+</table>
+<%= paginate @categories %>
+<div>
+  <%= link_to "Add category", new_admin_category_path,
+    class: "btn btn-primary" %>
+</div>
